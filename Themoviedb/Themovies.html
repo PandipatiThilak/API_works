@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width ,initial-scale=1.0">
+        <title>Document</title>
+        <style>
+            #Moviescontainer {
+    padding: 20px;
+    background-color: #f4f4f4;
+    border-radius: 8px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+#Moviescontainer h3 {
+    text-align: center;
+    color: #333;
+}
+
+#Moviescontainer div {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    padding: 15px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+#Moviescontainer h4 {
+    margin: 0;
+    font-size: 18px;
+    color: #555;
+}
+
+#Moviescontainer p {
+    margin: 5px 0 0;
+    font-size: 16px;
+    color: #777;
+}
+        </style>
+        </head>
+    <body>
+                <h1>Click below button to search for trending movies</h1>
+               
+                <button  id="TrendingMoviesbtn">Get Trending Movies</button>
+          
+        <div id="Moviescontainer"> </div>
+        
+        <script >
+            document.getElementById('TrendingMoviesbtn').addEventListener('click',TrendingMoviesFind);
+const container =document.getElementById('Moviescontainer')
+ async function TrendingMoviesFind() {
+    const apikey=`https://api.themoviedb.org/3/trending/movie/day?api_key=7f0d76dbdf23f89379aae743b43ad679`;
+    const response=await fetch(apikey);
+    const data=await response.json();
+    console.log(data);
+    
+    let movieList = '<h3>Trending Movies:</h3>';
+        data.results.forEach(movie => {
+            movieList += `
+                <div>
+                    <h4>${movie.title} (${movie.release_date})</h4>
+                    
+                    <p>Rating: ${movie.vote_average}</p>
+                </div>
+            `;
+        
+        container.innerHTML=movieList;
+    });
+    
+
+}
+
+        </script>
+    </body>
+
+    
+</html>

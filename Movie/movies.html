@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width ,initial-scale=1.0">
+        <title>Document</title>
+        
+        </head>
+        <style>
+            * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body Styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+/* Form Styling */
+form {
+    margin-bottom: 30px;
+    display: flex;
+}
+
+input[type="text"] {
+    padding: 10px;
+    width: 300px;
+    border: 2px solid #ccc;
+    border-radius: 5px 0 0 5px;
+    font-size: 16px;
+}
+
+button {
+    padding: 10px;
+    border: none;
+    background-color: #007BFF;
+    color: white;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Movie Container Styling */
+#movieContainer {
+    text-align: center;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    width: 100%;
+}
+
+#movieContainer h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+#movieContainer img {
+    max-width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+        </style>
+    <body>
+            <form >
+                <input type="text" class="searchMovie" required>
+                <button type="submit">search Movie </button>
+            </form>
+        <div id="movieContainer"> </div>
+        
+        <script >
+            const moviename = document.querySelector('.searchMovie');
+const container = document.getElementById('movieContainer');
+
+document.querySelector('form').addEventListener("submit", (e) => {
+    e.preventDefault();
+    let nameOfMovie = moviename.value;
+    getDetails(nameOfMovie);
+});
+
+function viewContent({ Title, Poster ,Actors,Released,Country,Year,Language}) {
+    const html = `
+        <h1>${Title}</h1>
+        <img src="${Poster}" alt="${Title}">
+        <h2>${Actors}<br>${Released}<br>${Country}<br>${Year}<br>${Language}</h2>
+       
+    `;
+    container.innerHTML = html;
+}
+
+async function getDetails(nameOfMovie) {
+    const response = await fetch(`http://www.omdbapi.com/?apikey=25bf92b0&t=${nameOfMovie}`);
+    const data = await response.json();
+    console.log(data);
+    viewContent(data);
+}
+        </script>
+    </body>
+
+    
+</html>

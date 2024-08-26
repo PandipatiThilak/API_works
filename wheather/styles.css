@@ -1,0 +1,30 @@
+#citydetails {
+    padding: 20px;
+    background-color: #f4f4f4;
+    border-radius: 8px;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+#citydeatils h2{
+    text-align: center;
+    color: #333; 
+}
+
+#citydeatls p {
+    margin: 5px 0 0;
+    font-size: 16px;
+    color: #777;
+}
+button {
+    padding: 10px;
+    border: none;
+    background-color: #007BFF;
+    color: white;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    font-size: 16px;
+}
+button:hover {
+    background-color: #0056b3;
+}

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width ,initial-scale=1.0">
+        <title>Document</title>
+        <style>#citydetails {
+            padding: 20px;
+            background-color: #f4f4f4;
+            border-radius: 8px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        #citydeatils h2{
+            text-align: center;
+            color: #333; 
+        }
+        
+        #citydeatls p {
+            margin: 5px 0 0;
+            font-size: 16px;
+            color: #777;
+        }
+        button {
+            padding: 10px;
+            border: none;
+            background-color: #007BFF;
+            color: white;
+            border-radius: 0 5px 5px 0;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }</style>
+        </head>
+    <body>
+           <h1>Enter the city name for wheather details</h1>
+                <input type="text" id="searchcity" >
+                <button type="submit" id="wheatherReport">Enter the city name for wheather details</button>
+           
+        <div id="citydetails"> </div>
+        
+        <script >
+            
+document.getElementById('wheatherReport').addEventListener('click', GetWeatherDetails);
+
+async function GetWeatherDetails() {
+
+    const city = document.getElementById('searchcity').value;
+    const apiKey = '8e3d6dcf814770694740b458ab929068';
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+
+    
+        const response = await fetch(url);
+
+        
+        if (!response.ok) {
+            
+            const container = document.getElementById('citydetails');
+        container.innerHTML = `<h1>this is not working try with another city</h1>`
+        }
+        if(response.cod===404)
+        {
+            const container = document.getElementById('citydetails');
+        container.innerHTML = `<h1>this is not working try with another city</h1>`
+
+        }
+        const data = await response.json();
+
+     
+        const container = document.getElementById('citydetails');
+        container.innerHTML = `
+            <h2>Weather in ${data.name}</h2>
+            <p>Temperature: ${data.main.temp} °C</p>
+            <p>Weather: ${data.weather[0].description}</p>
+            <p>Humidity: ${data.main.humidity}%</p>
+            <p>Wind Speed: ${data.wind.speed} m/s</p>
+        `;
+        
+        
+    }
+
+
+        </script>
+    </body>
+
+    
+</html>

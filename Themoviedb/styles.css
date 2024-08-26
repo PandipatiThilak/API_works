@@ -1,0 +1,42 @@
+#Moviescontainer {
+    padding: 20px;
+    background-color: #f4f4f4;
+    border-radius: 8px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+#Moviescontainer h3 {
+    text-align: center;
+    color: #333;
+}
+
+#Moviescontainer div {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    padding: 15px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+#Moviescontainer h4 {
+    margin: 0;
+    font-size: 18px;
+    color: #555;
+}
+
+#Moviescontainer p {
+    margin: 5px 0 0;
+    font-size: 16px;
+    color: #777;
+}
+button {
+    padding: 10px;
+    border: none;
+    background-color: #007BFF;
+    color: white;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    font-size: 16px;
+}
